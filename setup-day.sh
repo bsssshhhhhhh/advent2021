@@ -13,7 +13,7 @@ dotnet new console --name part2
 dotnet add part2/part2.csproj reference ../common/common.csproj
 touch part2/input.txt
 
-find . -name Program.cs | xargs sed -i '/using System;/a using AdventCommon;'
-find . -name Program.cs | xargs sed -i 's/Console.WriteLine("Hello World!");/var lines = ConsoleHelpers.ReadInput();/'
+find . -name Program.cs | xargs sed -i 's|// See https://aka.ms/new-console-template for more information|using AdventCommon;|'
+find . -name Program.cs | xargs sed -i 's/Console.WriteLine("Hello, World!");/var lines = ConsoleHelpers.ReadInput();/'
 
 cd ..
