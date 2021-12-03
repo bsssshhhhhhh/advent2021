@@ -2,14 +2,16 @@
 var lines = ConsoleHelpers.ReadInput();
 
 var len = lines[0].Length;
-var gammaRateString = "";
+var gammaRate = 0;
 
+
+var numbers = lines.Select(x => Convert.ToInt32(x, 2)).ToArray();
+var getMostPopularBit = (int pos) => (numbers.Count((num) => (num & (1 << pos)) > 0) >= numbers.Length / 2m) ? 1 : 0;
 
 for (var i = 0; i < len; i++) {
-    gammaRateString += Math.Round(lines.Select(x => x[i] == '0' ? 0 : 1).Average());
+    gammaRate |= getMostPopularBit(i) << i;
 }
 
-var gammaRate = Convert.ToInt32(gammaRateString, 2);
 var epsilonRate = ~gammaRate & ((1 << len) - 1);
 
 Console.WriteLine(gammaRate * epsilonRate);
