@@ -7,7 +7,7 @@ var choices = Enumerable.Range(0, choices_.Count()).Select(i => choices_.Take(i)
 var boards = string.Join("\n", lines.Skip(2))
     .Split("\n\n")
     .Select(x => x.Split("\n"))
-    .Select(x => x.Select(y => y.Split(" ").Where(z => z.Length > 0)))
+    .Select(x => x.Select(y => y.Split(" ", StringSplitOptions.RemoveEmptyEntries)))
     .Select(x => x.Select(y => y.Select(z => int.Parse(z.Trim()))));
 
 
