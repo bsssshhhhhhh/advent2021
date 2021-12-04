@@ -12,8 +12,7 @@ var boards = string.Join("\n", lines.Skip(2))
     .Select(x => x.Select(y => y.Select(z => int.Parse(z.Trim()))));
 
 
-static IEnumerable<int> getUnmarkedNums(IEnumerable<IEnumerable<int>> board, IEnumerable<int> nums)
-{
+var getUnmarkedNums = (IEnumerable<IEnumerable<int>> board, IEnumerable<int> nums) => {
     return board
         .Aggregate((acc, cur) => {
             var lst = acc.ToList();
@@ -21,7 +20,7 @@ static IEnumerable<int> getUnmarkedNums(IEnumerable<IEnumerable<int>> board, IEn
             return lst;
         })
         .Except(nums);
-}
+};
 
 var checkWin = (IEnumerable<IEnumerable<int>> board, IEnumerable<int> nums) => {
     var boardLen = board.Count();
